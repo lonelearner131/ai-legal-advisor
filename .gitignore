@@ -1,0 +1,13 @@
+# Environment variables
+.env*
+!.env.example
+
+# Next.js
+.next
+out
+build
+node_modules
+
+# Misc
+.DS_Store
+*.log
