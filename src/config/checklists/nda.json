@@ -1,0 +1,10 @@
+{
+  "documentType": "nda",
+  "keyClauses": [
+    { "name": "Definition of Confidential Information", "importance": "high", "whatToCheck": "Is it broadly or narrowly defined? What is excluded?" },
+    { "name": "Duration of Obligation", "importance": "high", "whatToCheck": "How long must the information be kept secret? Is it forever?" },
+    { "name": "Permitted Use", "importance": "medium", "whatToCheck": "What are you allowed to do with the information?" },
+    { "name": "Exceptions", "importance": "medium", "whatToCheck": "Is there a carve-out for information already public or legally requested?" },
+    { "name": "Remedies", "importance": "low", "whatToCheck": "What happens if a breach occurs? Are injunctions mentioned?" }
+  ]
+}

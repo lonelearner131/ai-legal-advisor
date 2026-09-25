@@ -1,0 +1,10 @@
+{
+  "documentType": "lease",
+  "keyClauses": [
+    { "name": "Security deposit", "importance": "high", "whatToCheck": "Amount, conditions for return, deductions allowed" },
+    { "name": "Notice period", "importance": "high", "whatToCheck": "Days required before termination by either party" },
+    { "name": "Maintenance & Repairs", "importance": "medium", "whatToCheck": "Who pays for normal wear and tear vs major damage" },
+    { "name": "Subletting", "importance": "medium", "whatToCheck": "Is it allowed? What are the conditions?" },
+    { "name": "Rent Increase", "importance": "high", "whatToCheck": "How often and by how much can rent be increased" }
+  ]
+}

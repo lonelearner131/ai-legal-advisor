@@ -1,0 +1,10 @@
+{
+  "documentType": "employment",
+  "keyClauses": [
+    { "name": "Compensation & Benefits", "importance": "high", "whatToCheck": "Base salary, bonuses, equity, and health benefits" },
+    { "name": "Termination", "importance": "high", "whatToCheck": "At-will employment status, severance, notice period required" },
+    { "name": "Non-compete", "importance": "high", "whatToCheck": "Duration, geographic scope, restricted activities" },
+    { "name": "Intellectual Property", "importance": "medium", "whatToCheck": "Who owns work created during vs outside business hours" },
+    { "name": "Confidentiality / NDA", "importance": "medium", "whatToCheck": "What information is protected and for how long" }
+  ]
+}

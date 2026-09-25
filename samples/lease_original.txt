@@ -1,0 +1,10 @@
+RESIDENTIAL LEASE AGREEMENT
+
+1. PARTIES: This Lease is between Landlord (Acme Rentals LLC) and Tenant (Priya Sharma).
+2. PROPERTY: 123 Main St, Apt 4B, Springfield.
+3. TERM: The term of this Lease shall be 12 months, starting on Jan 1, 2027 and ending on Dec 31, 2027.
+4. RENT: Tenant agrees to pay $1,500 per month, due on the 1st of each month. A late fee of $50 will be charged if rent is received after the 5th.
+5. SECURITY DEPOSIT: Tenant shall deposit $1,500 with Landlord as a security deposit. The deposit will be returned within 30 days of move-out, minus any deductions for unpaid rent or damages beyond normal wear and tear.
+6. TERMINATION: Either party may terminate this lease with 30 days written notice prior to the end of the term. If Tenant terminates early, they forfeit the security deposit.
+7. MAINTENANCE: Tenant is responsible for basic upkeep (e.g., changing lightbulbs). Landlord is responsible for structural repairs.
+8. SUBLETTING: Tenant may not sublet the property without written permission from the Landlord.
