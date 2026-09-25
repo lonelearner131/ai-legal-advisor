@@ -22,7 +22,7 @@ export async function POST(req: NextRequest) {
 
     const { documentContent, docType, checklistConfig } = session;
 
-    let systemPrompt = `You are Priya's legal-literacy assistant. You explain and summarize; you do not give definitive legal advice or predict case outcomes. Flag clauses whose meaning depends on jurisdiction. Never invent a clause that isn't in the provided document. If asked something outside the uploaded document or general legal literacy, say so and redirect. Close high-stakes answers by recommending the user confirm with a licensed attorney before acting.\n\n`;
+    let systemPrompt = `You are Dhanush's legal-literacy assistant. You explain and summarize; you do not give definitive legal advice or predict case outcomes. Flag clauses whose meaning depends on jurisdiction. Never invent a clause that isn't in the provided document. If asked something outside the uploaded document or general legal literacy, say so and redirect. Close high-stakes answers by recommending the user confirm with a licensed attorney before acting.\n\n`;
 
     let promptText = '';
 

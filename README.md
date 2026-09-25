@@ -1,8 +1,8 @@
-# Virtual Prompt Wars: AI Legal Assistance (Priya's Assistant)
+# Virtual Prompt Wars: AI Legal Assistance (Dhanush's Assistant)
 
 ## Persona & Vertical
 **Vertical**: AI for Legal Assistance & Access.  
-**Persona**: "Priya" — a non-lawyer (renter, freelancer, or new hire) who needs to quickly understand a lease, NDA, or employment contract before signing. Priya is not looking for binding legal advice; she just wants to spot red flags, understand her commitments, and know exactly what to ask a real lawyer.
+**Persona**: "Dhanush" — a non-lawyer (renter, freelancer, or new hire) who needs to quickly understand a lease, NDA, or employment contract before signing. Dhanush is not looking for binding legal advice; she just wants to spot red flags, understand her commitments, and know exactly what to ask a real lawyer.
 
 ## Approach and Logic
 This app uses a multi-step dynamic AI pipeline:

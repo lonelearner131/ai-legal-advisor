@@ -14,9 +14,9 @@ export default function Home() {
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [isComparing, setIsComparing] = useState(false);
   const [activeTab, setActiveTab] = useState<'summary' | 'chat' | 'compare'>('summary');
-  
+
   // Chat state
-  const [chatHistory, setChatHistory] = useState<{role: string, text: string}[]>([]);
+  const [chatHistory, setChatHistory] = useState<{ role: string, text: string }[]>([]);
   const [query, setQuery] = useState('');
   const [isChatting, setIsChatting] = useState(false);
 
@@ -113,7 +113,7 @@ export default function Home() {
   const handleChat = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!query.trim() || !sessionId) return;
-    
+
     const userMessage = query;
     setQuery('');
     setChatHistory(prev => [...prev, { role: 'user', text: userMessage }, { role: 'assistant', text: '' }]);
@@ -137,7 +137,7 @@ export default function Home() {
         done = doneReading;
         const chunkValue = decoder.decode(value);
         text += chunkValue;
-        
+
         setChatHistory(prev => {
           const newHistory = [...prev];
           newHistory[newHistory.length - 1].text = text;
@@ -168,7 +168,7 @@ export default function Home() {
             <Scale className="w-8 h-8 text-indigo-400" />
           </div>
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight bg-gradient-to-br from-white to-neutral-500 bg-clip-text text-transparent">
-            Priya's Legal Assistant
+            Dhanush's Legal Assistant
           </h1>
           <p className="text-neutral-400 max-w-2xl mx-auto text-lg">
             Upload your lease, NDA, or employment contract to translate legalese into plain English and spot hidden risks before you sign.
@@ -176,7 +176,7 @@ export default function Home() {
         </header>
 
         {!file && (
-          <div 
+          <div
             onClick={() => fileInputRef.current?.click()}
             className="border-2 border-dashed border-neutral-800 hover:border-indigo-500/50 hover:bg-indigo-500/5 transition-all rounded-3xl p-16 text-center cursor-pointer group"
           >
@@ -210,19 +210,19 @@ export default function Home() {
               </div>
 
               <div className="flex flex-col gap-2">
-                <button 
+                <button
                   onClick={() => setActiveTab('summary')}
                   className={`px-4 py-3 rounded-xl text-left font-medium transition-colors ${activeTab === 'summary' ? 'bg-indigo-500/10 text-indigo-400 border border-indigo-500/20' : 'hover:bg-neutral-900 text-neutral-400'}`}
                 >
                   Summary & Risks
                 </button>
-                <button 
+                <button
                   onClick={() => setActiveTab('chat')}
                   className={`px-4 py-3 rounded-xl text-left font-medium transition-colors ${activeTab === 'chat' ? 'bg-indigo-500/10 text-indigo-400 border border-indigo-500/20' : 'hover:bg-neutral-900 text-neutral-400'}`}
                 >
                   Ask Questions
                 </button>
-                <button 
+                <button
                   onClick={() => setActiveTab('compare')}
                   className={`px-4 py-3 rounded-xl text-left font-medium transition-colors ${activeTab === 'compare' ? 'bg-indigo-500/10 text-indigo-400 border border-indigo-500/20' : 'hover:bg-neutral-900 text-neutral-400'}`}
                 >
@@ -233,12 +233,12 @@ export default function Home() {
 
             <div className="lg:col-span-3">
               <div className="bg-neutral-900 border border-neutral-800 rounded-2xl p-6 md:p-8 min-h-[600px] flex flex-col">
-                
+
                 {activeTab === 'summary' && (
                   <div className="space-y-6 flex-1">
                     <div className="flex justify-between items-center border-b border-neutral-800 pb-4">
                       <h2 className="text-2xl font-bold flex items-center gap-2">
-                        <CheckCircle className="text-green-400 w-6 h-6" /> 
+                        <CheckCircle className="text-green-400 w-6 h-6" />
                         Analysis Results
                       </h2>
                       <div className="flex gap-2">
@@ -247,14 +247,14 @@ export default function Home() {
                         </button>
                       </div>
                     </div>
-                    
+
                     {isAnalyzing && !summary ? (
                       <div className="flex flex-col items-center justify-center h-64 space-y-4">
                         <RefreshCw className="w-8 h-8 text-indigo-500 animate-spin" />
                         <p className="text-neutral-400">Reading legalese and extracting key clauses...</p>
                       </div>
                     ) : (
-                      <div 
+                      <div
                         className="prose prose-invert prose-indigo max-w-none prose-headings:font-semibold prose-a:text-indigo-400"
                         dangerouslySetInnerHTML={getMarkdownHtml(summary)}
                       />
@@ -275,24 +275,24 @@ export default function Home() {
                         chatHistory.map((msg, i) => (
                           <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                             <div className={`max-w-[80%] rounded-2xl px-5 py-3 ${msg.role === 'user' ? 'bg-indigo-600 text-white' : 'bg-neutral-800 text-neutral-200 border border-neutral-700'}`}>
-                              <div className="prose prose-invert prose-sm" dangerouslySetInnerHTML={getMarkdownHtml(msg.text || (isChatting && i === chatHistory.length -1 ? '...' : ''))} />
+                              <div className="prose prose-invert prose-sm" dangerouslySetInnerHTML={getMarkdownHtml(msg.text || (isChatting && i === chatHistory.length - 1 ? '...' : ''))} />
                             </div>
                           </div>
                         ))
                       )}
                     </div>
-                    
+
                     <form onSubmit={handleChat} className="relative mt-auto">
-                      <input 
-                        type="text" 
+                      <input
+                        type="text"
                         value={query}
                         onChange={e => setQuery(e.target.value)}
-                        placeholder="Ask a question..." 
+                        placeholder="Ask a question..."
                         disabled={isChatting}
                         className="w-full bg-neutral-950 border border-neutral-800 rounded-xl pl-4 pr-12 py-4 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all disabled:opacity-50"
                       />
-                      <button 
-                        type="submit" 
+                      <button
+                        type="submit"
                         disabled={isChatting || !query.trim()}
                         className="absolute right-2 top-2 p-2 bg-indigo-500 hover:bg-indigo-600 text-white rounded-lg transition-colors disabled:opacity-50"
                       >
@@ -306,13 +306,13 @@ export default function Home() {
                 {activeTab === 'compare' && (
                   <div className="space-y-6">
                     <h2 className="text-2xl font-bold flex items-center gap-2">
-                      <Scale className="text-indigo-400 w-6 h-6" /> 
+                      <Scale className="text-indigo-400 w-6 h-6" />
                       Compare Documents
                     </h2>
                     <p className="text-neutral-400">Upload a second document of the same type to see what changed.</p>
-                    
+
                     {!compareFile ? (
-                      <div 
+                      <div
                         onClick={() => compareInputRef.current?.click()}
                         className="border-2 border-dashed border-neutral-800 hover:border-indigo-500/50 hover:bg-indigo-500/5 transition-all rounded-3xl p-12 text-center cursor-pointer group"
                       >
