@@ -48,15 +48,37 @@ Ground your answer ONLY in the text actually provided. Do not hallucinate clause
       return NextResponse.json({ error: 'Invalid mode' }, { status: 400 });
     }
 
-    const responseStream = await ai.models.generateContentStream({
-      model: ANALYSIS_MODEL,
-      contents: [
-        { role: 'user', parts: [{ text: systemPrompt + promptText }, documentContent] }
-      ],
-      config: {
-        temperature: 0.2,
+    let responseStream;
+    let retries = 3;
+    let delay = 1000;
+    
+    while (retries > 0) {
+      try {
+        responseStream = await ai.models.generateContentStream({
+          model: ANALYSIS_MODEL,
+          contents: [
+            { role: 'user', parts: [{ text: systemPrompt + promptText }, documentContent] }
+          ],
+          config: {
+            temperature: 0.2,
+          }
+        });
+        break; // Success
+      } catch (e: any) {
+        if (e.status === 503 && retries > 1) {
+          retries--;
+          console.log(`503 High Demand. Retrying in ${delay}ms...`);
+          await new Promise(resolve => setTimeout(resolve, delay));
+          delay *= 2;
+        } else {
+          throw e;
+        }
       }
-    });
+    }
+    
+    if (!responseStream) {
+       throw new Error("Failed to generate response after retries.");
+    }
 
     const stream = new ReadableStream({
       async start(controller) {

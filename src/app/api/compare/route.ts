@@ -45,15 +45,37 @@ Provide a structured Markdown diff of the key changes (using bullet points or di
 
 IMPORTANT: Focus on obligations, liabilities, money, and deadlines.`;
 
-    const responseStream = await ai.models.generateContentStream({
-      model: ANALYSIS_MODEL,
-      contents: [
-        { role: 'user', parts: [{ text: systemPrompt + promptText }, { text: '--- DOCUMENT 1 (Original) ---' }, originalContent, { text: '--- DOCUMENT 2 (New) ---' }, newContent] }
-      ],
-      config: {
-        temperature: 0.1,
+    let responseStream;
+    let retries = 3;
+    let delay = 1000;
+
+    while (retries > 0) {
+      try {
+        responseStream = await ai.models.generateContentStream({
+          model: ANALYSIS_MODEL,
+          contents: [
+            { role: 'user', parts: [{ text: systemPrompt + promptText }, { text: '--- DOCUMENT 1 (Original) ---' }, originalContent, { text: '--- DOCUMENT 2 (New) ---' }, newContent] }
+          ],
+          config: {
+            temperature: 0.1,
+          }
+        });
+        break;
+      } catch (e: any) {
+        if (e.status === 503 && retries > 1) {
+          retries--;
+          console.log(`503 High Demand in compare. Retrying in ${delay}ms...`);
+          await new Promise(resolve => setTimeout(resolve, delay));
+          delay *= 2;
+        } else {
+          throw e;
+        }
       }
-    });
+    }
+
+    if (!responseStream) {
+       throw new Error("Failed to generate response after retries.");
+    }
 
     const stream = new ReadableStream({
       async start(controller) {
